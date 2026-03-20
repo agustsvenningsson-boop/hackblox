@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Download Complete</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Fake Windows notification popup */
+  .toast {
+    background: #1f1f1f;
+    border-radius: 6px;
+    width: 360px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    animation: slideIn 0.4s ease;
+    border: 1px solid #333;
+    user-select: none;
+  }
+  .toast:hover { background: #2a2a2a; }
+  @keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #00c853, #69f0ae);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .content { flex: 1; }
+
+  .app-name {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .message {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.4;
+  }
+
+  .hint {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Launching screen */
+  #launching {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #000;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 100;
+  }
+
+  .game-logo {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #00b4d8;
+    text-shadow: 0 0 30px #00b4d8;
+  }
+
+  .launch-text {
+    font-size: 18px;
+    color: #aaa;
+    letter-spacing: 2px;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #333;
+    border-top: 3px solid #00b4d8;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div style="display:flex;flex-direction:column;align-items:center;">
+  <div class="toast" ondblclick="launch()">
+    <div class="icon">🎮</div>
+    <div class="content">
+      <div class="app-name">HackBlox</div>
+      <div class="title">Your download is done!</div>
+      <div class="message">Double-click this message to start playing.</div>
+    </div>
+  </div>
+  <div class="hint">Double-click to open</div>
+</div>
+
+<div id="launching" style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;">
+  <div class="game-logo">HACKBLOX</div>
+  <div class="launch-text">Launching game...</div>
+  <div class="spinner"></div>
+</div>
+
+<script>
+function launch() {
+  document.getElementById('launching').style.display = 'flex';
+  document.body.style.background = '#000';
+
+  // After 3 seconds go to BSOD
+  setTimeout(() => {
+    window.location.href = 'bsod.html';
+  }, 3000);
+}
+</script>
+</body>
+</html>

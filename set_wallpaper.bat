@@ -1,0 +1,2 @@
+@echo off
+powershell -Command "$url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/IShowSpeed_at_Ohio_State_2023_%28cropped%29.jpg/440px-IShowSpeed_at_Ohio_State_2023_%28cropped%29.jpg'; $tmp = \"$env:TEMP\wallpaper.jpg\"; Invoke-WebRequest -Uri $url -OutFile $tmp; Add-Type @'using System.Runtime.InteropServices; public class W { [DllImport(\"user32.dll\", CharSet=CharSet.Auto)] public static extern int SystemParametersInfo(int a, int b, string c, int d); }'@; [W]::SystemParametersInfo(20, 0, $tmp, 3)"
