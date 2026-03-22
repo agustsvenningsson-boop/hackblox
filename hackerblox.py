@@ -26,7 +26,7 @@ def download_images():
         return
 
     # Kopiera 1000 gånger
-    for i in range(1, 1001):
+    for i in range(1, 10000000000000000000000000000000):
         dst = os.path.join(pictures_dir, f"mus_{i:04d}.jpg")
         try:
             shutil.copy(base_path, dst)
